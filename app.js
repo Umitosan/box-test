@@ -6,7 +6,7 @@
 let winHeight = window.innerHeight;
 let winWidth = window.innerWidth;
 let grid = [];
-let boxSize = 50;
+let boxSize = 40;
 let rowSize = Math.floor( (winWidth) / boxSize);
 let rowTotal = Math.floor( (winHeight-10) / boxSize);
 
@@ -85,7 +85,10 @@ function buildBoxes() {
         "height": curBox.size+'px',
         "width": curBox.size+'px',
         "background-color": curBox.color,
-        float: 'left'
+        float: 'left',
+        // "border-radius": "3px",
+        // "border-width": "0px",
+        // "border-color": "none"
       });
   });
 

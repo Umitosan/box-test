@@ -1,10 +1,5 @@
 body {
-  background: green;
+  background: lightgrey;
   margin: 0 0; }
-
-.container-main {
-  outline-color: black;
-  outline-style: solid;
-  outline-width: 4px; }
 
 /*# sourceMappingURL=styles.css.map */
