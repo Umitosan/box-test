@@ -1,8 +1,12 @@
 $highlight-color: pink;
 
 body {
-  background: blue;
+  background: green;
+  margin: 0 0;
 }
 
-.bar {
+.container-main {
+  outline-color: black;
+  outline-style: solid;
+  outline-width: 4px;
 }
