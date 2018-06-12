@@ -9,6 +9,8 @@ let grid = [];
 let boxSize = 40;
 let rowSize = Math.floor( (winWidth) / boxSize);
 let rowTotal = Math.floor( (winHeight-10) / boxSize);
+let hightlightColor = 'pink';
+let clickColor = 'green';
 
 function Row(index, size, color) {
   this.boxes = [];
@@ -20,8 +22,9 @@ function Row(index, size, color) {
 function Box(index,size,color) {
   this.index = index;
   this.size = size;
+  this.initColor = color;
   this.baseColor = color;
-  this.color = color;
+  this.curColor = color;
 }
 
 
@@ -84,7 +87,7 @@ function buildBoxes() {
       $(this).css({
         "height": curBox.size+'px',
         "width": curBox.size+'px',
-        "background-color": curBox.color,
+        "background-color": curBox.curColor,
         float: 'left',
         // "border-radius": "3px",
         // "border-width": "0px",
@@ -92,21 +95,33 @@ function buildBoxes() {
       });
   });
 
-  // events
+  // Box mouse events
   $('.box').mouseenter(function(event1) {
-    $(this).css("background","pink");
+    $(this).css("background", hightlightColor);
   }).mouseleave(function(event2) {
     let rInd = parseInt( $(this).parent().attr('ind') );
     let bInd = parseInt( $(this).attr('ind') );
     $(this).css("background",grid[rInd].boxes[bInd].baseColor);
+  }).click(function(event3) {
+    // console.log('click event = ', event3);
+    let rInd = parseInt( $(this).parent().attr('ind') );
+    let bInd = parseInt( $(this).attr('ind') );
+    grid[rInd].boxes[bInd].baseColor = clickColor;
+    grid[rInd].boxes[bInd].curColor = clickColor;
+    $(this).css("background",grid[rInd].boxes[bInd].curColor);
+  }).on('contextmenu', function(e) { // this is only one way to capture right-click, might not be ideal, also prevent right click from bringing up context menu
+    // console.log('e = ', e);
+    // console.log('this = ', this);
+    let rInd = parseInt( $(this).parent().attr('ind') );
+    let bInd = parseInt( $(this).attr('ind') );
+    let initColor = grid[rInd].boxes[bInd].initColor;
+    grid[rInd].boxes[bInd].baseColor = initColor;
+    grid[rInd].boxes[bInd].curColor = initColor;
+    $(this).css("background",grid[rInd].boxes[bInd].curColor);
+    return false;
   });
 
 }
-
-
-
-
-
 
 
 
